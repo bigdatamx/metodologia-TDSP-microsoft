@@ -76,11 +76,11 @@ Siga [este vínculo](https://www.visualstudio.com/en-us/docs/work/scrum/sprint-p
 
 Una vez creado el repositorio del proyecto en un proyecto de equipo, vaya a la página **Introducción** y haga clic en **Administrar el trabajo**.
 
-![2](./media/agile-development/2-sprint-team-overview.png)
+![2](https://s3.amazonaws.com/bigdatamx/2-sprint-team-overview.png)
 
 Para incluir una característica en el trabajo pendiente, haga clic en **Trabajos pendientes** --> **Características** --> **Nuevo**, escriba el **título** de la característica (normalmente el nombre del proyecto) y, después, haga clic en **Agregar**.
 
-![3](./media/agile-development/3-sprint-team-add-work.png)
+![3](https://s3.amazonaws.com/bigdatamx/3-sprint-team-add-work.png)
 
 Haga doble clic en la característica que ha creado. Rellene las descripciones, asigne los miembros del equipo a esta característica y establezca los parámetros de planeamiento para esta característica. 
 
@@ -91,15 +91,15 @@ También puede vincular esta característica al repositorio del proyecto. Haga c
 
 En la característica, se pueden agregar casos para describir los pasos principales necesarios para finalizar el proyecto (característica). Para agregar un nuevo caso, haga clic en el signo **+** situado a la izquierda de la característica en la vista de trabajo pendiente.  
 
-![4](./media/agile-development/4-sprint-add-story.png)
+![4](https://s3.amazonaws.com/bigdatamx/4-sprint-add-story.png)
 
 En la ventana emergente puede editar los detalles del caso, como el estado, la descripción, los comentarios, el planeamiento y la prioridad.
 
-![5](./media/agile-development/5-sprint-edit-story.png)
+![5](https://s3.amazonaws.com/bigdatamx/5-sprint-edit-story.png)
 
 Puede vincular este caso a un repositorio existente haciendo clic en **+ Agregar vínculo** en **Desarrollo**. 
 
-![6](./media/agile-development/6-sprint-link-existing-branch.png)
+![6](https://s3.amazonaws.com/bigdatamx/6-sprint-link-existing-branch.png)
 
 
 ## 5. <a name='AddTaskunderstory-5'></a>Adición de una tarea a un caso 
@@ -108,13 +108,13 @@ Las tareas son pasos detallados específicos necesarios para completar cada caso
 
 Para agregar una tarea a un caso, haga clic en el signo **+** situado junto al elemento de caso, seleccione **Tarea** y, después, rellene la información detallada de esta tarea en la ventana emergente.
 
-![7](./media/agile-development/7-sprint-add-task.png)
+![7](https://s3.amazonaws.com/bigdatamx/7-sprint-add-task.png)
 
 Una vez creadas las características, los casos y las tareas, puede verlo todo en las vistas **Trabajo pendiente** o **Panel** para realizar el seguimiento de su estado.
 
-![8](./media/agile-development/8-sprint-backlog-view.png)
+![8](https://s3.amazonaws.com/bigdatamx/8-sprint-backlog-view.png)
 
-![9](./media/agile-development/9-link-to-a-new-branch.png)
+![9](https://s3.amazonaws.com/bigdatamx/9-link-to-a-new-branch.png)
 
 
 ## 6. <a name='set-up-agile-dsp-6'></a> Configuración de una plantilla de trabajo de TDSP de Agile en Visual Studio Online
@@ -125,7 +125,7 @@ En este artículo se explica cómo configurar una plantilla de proceso de cienci
 
 1. Vaya a la página principal del servidor,  **Configurar** -> **Proceso**.
 
-    ![10](./media/agile-development/10-settings.png) 
+    ![10](https://s3.amazonaws.com/bigdatamx/10-settings.png) 
 
 2. Vaya a **Todos los procesos** -> **Procesos**, en **Agile** y haga clic en **Crear proceso heredado**. A continuación, ponga el nombre de proceso "AgileDataScienceProcess" y haga clic en **Crear proceso**.
 
