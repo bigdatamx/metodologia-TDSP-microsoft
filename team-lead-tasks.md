@@ -384,7 +384,7 @@ A continuación, se le pide que escriba el nombre de la unidad que se va a agreg
 
 Confirme que se ha montado correctamente una nueva unidad F en la máquina.
 
-![40](https://s3.amazonaws.com/bigdatamx/39-team-leads-39-attach-s4-linux.png)
+![40](https://s3.amazonaws.com/bigdatamx/40-team-leads-40-attach-s4-linux.png)
 
 **Cómo especificar manualmente la información de Azure File Storage:** si no tiene su información de Azure File Storage en un archivo de texto, puede seguir las instrucciones de la siguiente pantalla para escribir la suscripción necesaria, la cuenta de almacenamiento y la información de Azure File Storage:
 
