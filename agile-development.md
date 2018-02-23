@@ -35,7 +35,7 @@ En este artículo se incluyen instrucciones acerca de cómo:
 
 En la siguiente ilustración se muestra un flujo de trabajo habitual de planeación, codificación y control de origen de sprint que se realiza al implementar un proyecto de ciencia de datos:
 
-![1](./media/agile-development/1-project-execute.png)
+![1](https://s3.amazonaws.com/bigdatamx/1-project-execute.png)
 
 
 ##  1. <a name='Terminology-1'></a>Terminología 
