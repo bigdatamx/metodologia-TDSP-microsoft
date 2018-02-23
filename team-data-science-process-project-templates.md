@@ -40,11 +40,11 @@ La plantilla de Microsoft Project para el proceso de ciencia de datos en equipo 
 
 Cuando abra el plan, haga clic en el vínculo situado más a la izquierda del proceso de ciencia de datos en equipo. Cambie el nombre y la descripción y, a continuación, añada otros recursos de equipo que necesite. Calcule las fechas requeridas a partir de su experiencia.
 
-![1](./media/team-data-science-process-project-templates/ms-project-templates.png)
+![1](https://s3.amazonaws.com/bigdatamx/1-ms-project-templates.png)
 
 Cada tarea tiene una nota. Abra esas notas para ver qué recursos se han creado ya.
 
-![2](./media/team-data-science-process-project-templates/ms-project-template-task.png)
+![2](https://s3.amazonaws.com/bigdatamx/2-ms-project-template-task.png)
 
 
 ## <a name="excel-template"></a>Plantilla de Excel
