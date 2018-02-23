@@ -25,7 +25,7 @@ En este tema se describen las tareas que se espera que un administrador de grupo
 
 El **Administrador de grupo** es el administrador de la unidad de ciencia de datos completa en una empresa. Una unidad de ciencia de datos puede tener varios equipos, cada uno de ellos trabajando en varios proyectos de ciencia de datos en segmentos verticales de negocio distintos. Un Administrador de grupo puede delegar sus tareas en un suplente, pero las tareas asociadas al rol no cambian. En el siguiente diagrama se muestran las seis tareas principales:
 
-![0](./media/group-manager-tasks/tdsp-group-manager.png)
+![0](https://s3.amazonaws.com/bigdatamx/0-tdsp-group-manager.png)
 
 
 >[AZURE.NOTE] En las instrucciones siguientes se detallan los pasos necesarios para configurar un entorno de grupo de TDSP mediante VSTS. También se especifica cómo llevar a cabo estas tareas con VSTS, ya que es cómo se implementa TDSP en Microsoft. Si se utiliza otra plataforma de hospedaje de código para el grupo, las tareas que debe realizar el Administrador de grupo seguirán siendo las mismas. Sin embargo, la forma de completar estas tareas sí que será diferente.
@@ -70,19 +70,19 @@ El servidor de VSTS hospeda los repositorios siguientes:
     
 Vaya a [Visual Studio Online](https://www.visualstudio.com/), haga clic en **Iniciar sesión** en la esquina superior derecha e inicie sesión en su cuenta de Microsoft. 
     
-![1](./media/group-manager-tasks/login.PNG)
+![1](https://s3.amazonaws.com/bigdatamx/1-login.png)
 
 Si no tiene una cuenta de Microsoft, haga clic en **Registrarse ahora** para crear una cuenta de Microsoft y, después, inicie sesión con esa cuenta. 
 
 Si su organización tiene una suscripción de Visual Studio o MSDN, haga clic en el cuadro verde **Iniciar sesión con una cuenta profesional o educativa** e inicie sesión con las credenciales asociadas a esta suscripción. 
         
-![2](./media/group-manager-tasks/signin.PNG)
+![2](https://s3.amazonaws.com/bigdatamx/2-signin.png)
 
 
         
 Después de iniciar sesión, haga clic en **Crear nueva cuenta** en la esquina superior derecha tal como se muestra en la siguiente imagen:
         
-![3](./media/group-manager-tasks/create-account-1.PNG)
+![3](https://s3.amazonaws.com/bigdatamx/3-create-account-1.png)
         
 Rellene la información del servidor de VSTS que quiere crear en el asistente para **crear su cuenta** con los valores siguientes: 
 
@@ -92,11 +92,11 @@ Rellene la información del servidor de VSTS que quiere crear en el asistente pa
 - **Organizar el trabajo usando:** elija *Agile*.
 - **Hospedar sus proyectos en:** elija una ubicación geográfica. En este ejemplo, hemos elegido *Centro y Sur de EE. UU.* 
         
-![4](./media/group-manager-tasks/fill-in-account-information.png)
+![4](https://s3.amazonaws.com/bigdatamx/4-fill-in-account-information.png)
 
 >[AZURE.NOTE] Si ve la ventana emergente siguiente después de hacer clic en **Crear nueva cuenta**, es necesario que haga clic en **Cambiar detalles** para mostrar todos los campos detallados.
 
-![5](./media/group-manager-tasks/create-account-2.png)
+![5](https://s3.amazonaws.com/bigdatamx/5-create-account-2.png)
 
 
 Haga clic en **Continue**. 
@@ -105,7 +105,7 @@ Haga clic en **Continue**.
 
 La página **GroupCommon** (*https://\<servername\>.visualstudio.com/GroupCommon*) se abre una vez que se crea el servidor de VSTS.
                             
-![6](./media/group-manager-tasks/server-created-2.PNG)
+![6](https://s3.amazonaws.com/bigdatamx/6-server-created-2.png)
 
 ## <a name="3-create-the-grouputilities-r2-repository"></a>3. Crear el repositorio GroupUtilities (R2)
 
@@ -113,15 +113,15 @@ Para crear el repositorio **GroupUtilities** (R2) en el servidor de VSTS:
 
 - Para abrir el asistente para **crear un nuevo repositorio**, haga clic en **Nuevo repositorio** en la pestaña **Control de versiones** del proyecto de equipo. 
 
-![7](./media/group-manager-tasks/create-grouputilities-repo-1.png) 
+![7](https://s3.amazonaws.com/bigdatamx/7-create-grouputilities-repo-1.png) 
 
 - Seleccione *Git* como el **Tipo**, escriba *GroupUtilities* como el **Nombre** y, después, haga clic en **Crear**. 
 
-![8](./media/group-manager-tasks/create-grouputilities-repo-2.png)
+![8](https://s3.amazonaws.com/bigdatamx/8-create-grouputilities-repo-2.png)
                 
 Ahora debería ver dos repositorios de Git, **GroupProjectTemplate** y **GroupUtilities**, en la columna izquierda de la página **Control de versiones**: 
 
-![9](./media/group-manager-tasks/two-repo-under-groupCommon.PNG)
+![9](https://s3.amazonaws.com/bigdatamx/9-two-repo-under-<groupcommon class="png"></groupcommon>)
 
 
 ## <a name="4-create-the-groupprojecttemplate-r1-repository"></a>4. Crear el repositorio GroupProjectTemplate (R1)
@@ -139,20 +139,20 @@ Para cambiar el nombre predeterminado del repositorio **GroupCommon** por *Group
     
 - Haga clic en **Colaborar en el código** en la página **GroupCommon** del proyecto del equipo. Esto le llevará a la página predeterminada del repositorio de Git del proyecto del equipo **GroupCommon**. Actualmente, este repositorio de Git está vacío. 
 
-![10](./media/group-manager-tasks/rename-groupcommon-repo-3.png)
+![10](https://s3.amazonaws.com/bigdatamx/10-rename-groupcommon-repo-3.png)
         
 - Haga clic en **GroupCommon** en la esquina superior izquierda (resaltado con un cuadro rojo en la ilustración siguiente) en la página del repositorio de Git de **GroupCommon** y seleccione **Administrar repositorios** (resaltado con un cuadro de color verde en la ilustración siguiente). Este procedimiento abrirá el **PANEL DE CONTROL**. 
 - Seleccione la pestaña **Control de versiones** del proyecto de equipo. 
 
-![11](./media/group-manager-tasks/rename-groupcommon-repo-4.png)
+![11](https://s3.amazonaws.com/bigdatamx/11-rename-groupcommon-repo-4.png)
 
 - Haga clic en **...** a la derecha del repositorio **GroupCommon** en el panel izquierdo y seleccione **Cambiar nombre de repositorio**. 
 
-![12](./media/group-manager-tasks/rename-groupcommon-repo-5.png)
+![12](https://s3.amazonaws.com/bigdatamx/12-rename-groupcommon-repo-5.png)
         
 - En el asistente para **cambiar el nombre del repositorio GroupCommon** que aparece, escriba *GroupProjectTemplate* en el cuadro **Nombre del repositorio** y, después, haga clic en **Cambiar nombre** . 
 
-![13](./media/group-manager-tasks/rename-groupcommon-repo-6.png)
+![13](https://s3.amazonaws.com/bigdatamx/13-rename-groupcommon-repo-6.png)
 
 
 
@@ -185,7 +185,7 @@ En este paso, se clonan el repositorio ProjectTemplate (G1) y Utilities (G2) del
     `git clone https://github.com/Azure/Azure-TDSP-ProjectTemplate`<br>
     `git clone https://github.com/Azure/Azure-TDSP-Utilities`
         
-![14](./media/group-manager-tasks/two-folder-cloned-from-TDSP-windows.PNG)
+![14](https://s3.amazonaws.com/bigdatamx/14-two-folder-cloned-from-tdsp-windows.png)
 
 - Con los nombres abreviados de nuestro repositorio, esto es lo que consiguen estas secuencias de comandos: 
     - G1 se clona en LG1
@@ -200,7 +200,7 @@ En este paso, se clonan el repositorio GroupProjectTemplate (R1) y el repositori
 - Haga clic en **CÓDIGO**. 
 - Elija los repositorios **GroupProjectTemplate** y **GroupUtilities**. Copie y guarde cada una de las direcciones URL (HTTPS para Windows; SSH para Linux) desde el elemento **Clonar URL** para su uso en las secuencias de comandos siguientes:  
 
-![15](./media/group-manager-tasks/find_https_ssh_2.PNG)
+![15](https://s3.amazonaws.com/bigdatamx/15-find_https_ssh_2.png)
 
 - Cambie al directorio **GitRepos\GroupCommon** de la DSVM de Windows o Linux, y ejecute uno de los siguientes conjuntos de comandos para clonar R1 y R2 en ese directorio.
         
@@ -211,14 +211,14 @@ Estas son las secuencias de comandos de Windows y Linux:
     git clone <the HTTPS URL of the GroupProjectTemplate repository>
     git clone <the HTTPS URL of the GroupUtilities repository>
 
-![16](./media/group-manager-tasks/clone-two-empty-group-reo-windows-2.PNG)
+![16](https://s3.amazonaws.com/bigdatamx/16-clone-two-empty-group-reo-windows-2.png)
 
     # Linux DSVM
 
     git clone <the SSH URL of the GroupProjectTemplate repository>
     git clone <the SSH URL of the GroupUtilities repository>
 
-![17](./media/group-manager-tasks/clone-two-empty-group-reo-linux-2.PNG)
+![17](https://s3.amazonaws.com/bigdatamx/17-clone-two-empty-group-reo-linux-2.png)
 
 >[AZURE.NOTE] Recibirá mensajes de advertencia de que LR1 y LR2 están vacíos.    
 
@@ -241,22 +241,22 @@ Para realizar estas dos tareas, ejecute las secuencias de comandos siguientes en
     wget "https://raw.githubusercontent.com/Azure/Azure-MachineLearning-DataScience/master/Misc/TDSP/tdsp_local_copy_win.ps1" -outfile "tdsp_local_copy_win.ps1"
     .\tdsp_local_copy_win.ps1 1
 
-![18](./media/group-manager-tasks/copy-two-folder-to-group-folder-windows-2.PNG)
+![18](https://s3.amazonaws.com/bigdatamx/18-copy-two-folder-to-group-folder-windows-2.png)
 
 Ahora puede ver qué archivos de los directorios LG1 y LG1 (excepto los archivos del directorio .git) se copiaron, respectivamente, en LR1 y LR2.
 
-![19](./media/group-manager-tasks/copy-two-folder-to-group-folder-windows.PNG)
+![19](https://s3.amazonaws.com/bigdatamx/19-copy-two-folder-to-group-folder-windows.png)
 
     # Linux DSVM
 
     wget "https://raw.githubusercontent.com/Azure/Azure-MachineLearning-DataScience/master/Misc/TDSP/tdsp_local_copy_linux.sh"
     bash tdsp_local_copy_linux.sh 1
 
-![20](./media/group-manager-tasks/copy-two-folder-to-group-folder-linux-2.PNG)
+![20](https://s3.amazonaws.com/bigdatamx/20-copy-two-folder-to-group-folder-linux-2.png)
         
 También puede ver que los archivos de las dos carpetas (excepto los archivos del directorio .git) se copian, respectivamente, en GroupProjectTemplate y GroupUtilities.
     
-![21](./media/group-manager-tasks/copy-two-folder-to-group-folder-linux.PNG)
+![21](https://s3.amazonaws.com/bigdatamx/21-copy-two-folder-to-group-folder-linux.png)
 
 - Con los nombres abreviados de nuestro repositorio, esto es lo que consiguen estas secuencias de comandos:
     - Los archivos de LG1 se copian en LR1
@@ -279,11 +279,11 @@ Ejecute los siguientes comandos desde el directorio GitRepos\GroupCommon\GroupPr
 
 La opción -m le permite establecer un mensaje de confirmación de git.
 
-![22](./media/group-manager-tasks/push-to-group-server-2.PNG)
+![22](https://s3.amazonaws.com/bigdatamx/22-push-to-group-server-2.png)
 
 Puede ver cómo los archivos se sincronizan al instante en el servidor de VSTS del grupo, en el repositorio GroupProjectTemplate.
 
-![23](./media/group-manager-tasks/push-to-group-server-showed-up-2.PNG)
+![23](https://s3.amazonaws.com/bigdatamx/23-push-to-group-server-showed-up-2.png)
 
 Por último, cambie al directorio **GitRepos\GroupCommon\GroupUtilities** y ejecute el mismo conjunto de comandos Bash de git:
 
@@ -308,7 +308,7 @@ Por último, cambie al directorio **GitRepos\GroupCommon\GroupUtilities** y ejec
 
 En la página principal del servidor de VSTS de su grupo, haga clic en el **icono de engranaje** situado junto al nombre de usuario en la esquina superior derecha y, después, seleccione la pestaña **Seguridad**. Puede agregar miembros al grupo con diferentes permisos.
 
-![24](./media/group-manager-tasks/add_member_to_group.PNG) 
+![24](https://s3.amazonaws.com/bigdatamx/24-add_member_to_group.png) 
 
 
 ## <a name="next-steps"></a>Pasos siguientes
