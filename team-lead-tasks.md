@@ -25,7 +25,7 @@ En este tema se describen las tareas que debe realizar un responsable de equipo 
 
 Un **responsable de equipo** administra un equipo de la unidad de ciencia de datos de una empresa. Un equipo está formada por varios científicos de datos. En una unidad de ciencia de datos con un número reducido de científicos de datos, el **Administrador del grupo** y el **Responsable de equipo** podrían ser la misma persona o podrían delegar sus tareas a un suplente. Pero las tareas en sí no cambian. El flujo de trabajo de las tareas que van a realizar los responsables de equipo para configurar este entorno se representan en la siguiente figura:
 
-![1](./media/team-lead-tasks/team-leads-1-creating-teams.png)
+![1](https://s3.amazonaws.com/bigdatamx/1-team-leads-1-creating-teams.png)
 
 >[AZURE.NOTE] Las tareas de los bloques 1 y 2 de la ilustración son necesarias si se usa Visual Studio Team Services (VSTS) como plataforma de hospedaje del código y se quiere tener un proyecto de equipo aparte para su propio equipo. Una vez que se completan estas tareas, todos los repositorios de su equipo pueden crearse en este proyecto de equipo. 
 
@@ -88,52 +88,52 @@ Realice este paso si va a usar VSTS como plataforma de hospedaje de código para
 - Vaya a la página principal del servidor VSTS de su grupo en la dirección URL `https://<VSTS Server Name\>.visualstudio.com`. 
 - Haga clic en **Nuevo** para crear un proyecto de equipo. 
 
-    ![2](./media/team-lead-tasks/team-leads-2-create-new-team.png)
+    ![2](https://s3.amazonaws.com/bigdatamx/2-team-leads-2-create-new-team.png)
 
 - Una ventana Crear proyecto de equipo le pide que especifique el nombre del proyecto (**MyTeam** en este ejemplo). Asegúrese de que selecciona **Agile** como la **plantilla de proceso** y **Git** como el **control de versiones**. 
 
-    ![3](./media/team-lead-tasks/team-leads-3-create-new-team-2.png)
+    ![3](https://s3.amazonaws.com/bigdatamx/3-team-leads-3-create-new-team-2.png)
 
 - Haga clic en **Crear proyecto**. El proyecto de equipo **MyTeam** se crea en menos de un minuto. 
 
 - Después de que el proyecto de equipo **MyTeam** se ha creado, haga clic en el botón **Navegar al proyecto**, para ir a la página principal del proyecto de equipo. 
 
-    ![4](./media/team-lead-tasks/team-leads-4-create-new-team-3.png)
+    ![4](https://s3.amazonaws.com/bigdatamx/4-team-leads-4-create-new-team-3.png)
 
 - Si ve una ventana emergente **Enhorabuena** , haga clic en el botón **Agregar código** (en el cuadro rojo). En caso contrario, haga clic en **Código** (en el cuadro amarillo). Se dirigirá a la página del repositorio de Git del proyecto de equipo. 
 
-    ![5](./media/team-lead-tasks/team-leads-5-team-project-home.png)
+    ![5](https://s3.amazonaws.com/bigdatamx/5-team-leads-5-team-project-home.png)
 
 ### <a name="create-the-myprojecttemplate-repository-r3-on-git"></a>Creación del repositorio MyProjectTemplate (R3) en Git
 
 - En la página del repositorio de Git del proyecto de equipo, haga clic en la flecha de descarga junto al nombre del repositorio **MyTeam** y seleccione **Administrar repositorios...**
 
-    ![6](./media/team-lead-tasks/team-leads-6-rename-team-project-repo.png)
+    ![6](https://s3.amazonaws.com/bigdatamx/6-team-leads-6-rename-team-project-repo.png)
 
 - En la pestaña **Control de versiones** del panel de control del proyecto de equipo, haga clic en **MyTeam** y seleccione **Cambiar nombre de repositorio...**. 
 
-    ![7](./media/team-lead-tasks/team-leads-7-rename-team-project-repo-2.png)
+    ![7](https://s3.amazonaws.com/bigdatamx/7-team-leads-7-rename-team-project-repo-2.png)
 
 - Especifique un nombre nuevo para el repositorio en la ventana **Cambiar el nombre del repositorio MyTeam**. En este ejemplo, *MyTeamProjectTemplate*. Puede elegir algo parecido a *<su nombre de equipo\>ProjectTemplate*. Haga clic en **Cambiar nombre** para continuar.
 
-    ![8](./media/team-lead-tasks/team-leads-8-rename-team-project-repo-3.png)
+    ![8](https://s3.amazonaws.com/bigdatamx/8-team-leads-8-rename-team-project-repo-3.png)
 
 ### <a name="create-the-myteamutilities-repository-r4-on-git"></a>Creación del repositorio MyTeamUtilities (R4) en Git
 
 - Para crear un nuevo repositorio *<su nombre de equipo\>Utilities* en el proyecto de equipo, haga clic en **Nuevo repositorio...**  en la pestaña **Control de versiones** del panel de control del proyecto de equipo.  
 
-    ![9](./media/team-lead-tasks/team-leads-9-create-team-utilities.png)
+    ![9](https://s3.amazonaws.com/bigdatamx/9-team-leads-9-create-team-utilities.png)
 
 - En la ventana **Crear nuevo repositorio** que aparece, proporcione un nombre para este repositorio. En este ejemplo, se llamará *MyTeamUtilities*, que en nuestra notación es **R4**. Elija algo parecido a *<su nombre de equipo\>Utilities*. Asegúrese de que selecciona **Git** como **Tipo**. A continuación, haga clic en **Crear** para continuar.
 
-    ![10](./media/team-lead-tasks/team-leads-10-create-team-utilities-2.png)
+    ![10](https://s3.amazonaws.com/bigdatamx/10-team-leads-10-create-team-utilities-2.png)
 
 - Confirme que los dos nuevos repositorios de Git se han creado en el proyecto de equipo **MyTeam**. En este ejemplo: 
 
 - **MyTeamProjectTemplate** (R3) 
 - **MyTeamUtilities** (R4).
 
-    ![11](./media/team-lead-tasks/team-leads-11-two-repo-in-team.png)
+    ![11](https://s3.amazonaws.com/bigdatamx/11-team-leads-11-two-repo-in-team.png)
 
 
 ## <a name="2-seed-your-team-projecttemplate-and-teamutilities-repositories"></a>2. Propagación de los repositorios ProjectTemplate y TeamUtilities del equipo
@@ -169,14 +169,14 @@ Para comenzar este procedimiento:
     git clone https://<Your VSTS Server name>.visualstudio.com/GroupCommon/_git/GroupProjectTemplate
     
 
-![12](./media/team-lead-tasks/team-leads-12-create-two-group-repos.png)
+![12](https://s3.amazonaws.com/bigdatamx/12-team-leads-12-create-two-group-repos.png)
 
 **Linux**
     
     git clone ssh://<Your VSTS Server name>@<Your VSTS Server name>.visualstudio.com:22/GroupCommon/_git/GroupProjectTemplate
     
     
-![13](./media/team-lead-tasks/team-leads-13-clone_two_group_repos_linux.png)
+![13](https://s3.amazonaws.com/bigdatamx/13-team-leads-13-clone_two_group_repos_linux.png)
 
 Estos comandos clonan el repositorio **GroupProjectTemplate** (R1) del servidor VSTS del grupo en el directorio local de **GitRepos\GroupCommon** de la máquina local. Después de la clonación, se crea el directorio **GroupProjectTemplate** (D1) en el directorio **GitRepos\GroupCommon**. Aquí, se supone que el administrador del grupo ha creado un proyecto de equipo **GroupCommon** y que el repositorio **GroupProjectTemplate** está en este proyecto de equipo. 
 
@@ -193,14 +193,14 @@ Estos comandos clonan los repositorios **MyTeamProjectTemplate** (R3) y **MyTeam
     git clone https://<Your VSTS Server name>.visualstudio.com/<Your Team Name>/_git/MyTeamProjectTemplate
     git clone https://<Your VSTS Server name>.visualstudio.com/<Your Team Name>/_git/MyTeamUtilities
 
-![14](./media/team-lead-tasks/team-leads-14-clone_two_empty_team_repos.png)
+![14](https://s3.amazonaws.com/bigdatamx/14-team-leads-14-clone_two_empty_team_repos.png)
         
 **Linux**
     
     git clone ssh://<Your VSTS Server name>@<Your VSTS Server name>.visualstudio.com:22/<Your Team Name>/_git/MyTeamProjectTemplate
     git clone ssh://<Your VSTS Server name>@<Your VSTS Server name>.visualstudio.com:22/<Your Team Name>/_git/MyTeamUtilities
     
-![15](./media/team-lead-tasks/team-leads-15-clone_two_empty_team_repos_linux.png)
+![15](https://s3.amazonaws.com/bigdatamx/15-team-leads-15-clone_two_empty_team_repos_linux.png)
 
 Después de la clonación, se crean dos directorios **MyTeamProjectTemplate** (D3) y **MyTeamUtilities** (D4) en el directorio **GitRepos\MyTeam**. Aquí se ha dado por supuesto que ha asignado un nombre a sus repositorios de plantillas de proyecto y utilidades de equipo **MyTeamProjectTemplate** y **MyTeamUtilities**. 
 
@@ -214,14 +214,14 @@ Para copiar el contenido de la carpeta **GroupProjectTemplate** (D1) local en la
     .\tdsp_local_copy_win.ps1 2
 
     
-![16](./media/team-lead-tasks/team-leads-16-local_copy_team_lead_new.png)
+![16](https://s3.amazonaws.com/bigdatamx/16-team-leads-16-local_copy_team_lead_new.png)
 
 ####<a name="from-the-linux-shell-for-the-linux-dsvm"></a>En el shell de Linux para la **DSVM de Linux**
     
     wget "https://raw.githubusercontent.com/Azure/Azure-MachineLearning-DataScience/master/Misc/TDSP/tdsp_local_copy_linux.sh"
     bash tdsp_local_copy_linux.sh 2
     
-![17](./media/team-lead-tasks/team-leads-17-local-copy-team-lead-linux-new.png)
+![17](https://s3.amazonaws.com/bigdatamx/17-team-leads-17-local-copy-team-lead-linux-new.png)
 
 Los scripts excluyen el contenido del directorio .git. Los scripts le piden que proporcione las **rutas de acceso completas** al directorio de origen D1 y al directorio de destino D3.
         
@@ -244,11 +244,11 @@ Para agregar el contenido de los directorios locales (opcionalmente personalizad
     git commit -m"push from DSVM"
     git push
     
-![18](./media/team-lead-tasks/team-leads-18-push-to-group-server-2.png)
+![18](https://s3.amazonaws.com/bigdatamx/18-team-leads-18-push-to-group-server-2.png)
 
 Los archivos del repositorio MyTeamProjectTemplate del servidor de VSTS del grupo se sincronizan casi al instante cuando se ejecute este script.
 
-![19](./media/team-lead-tasks/team-leads-19-push-to-group-server-showed-up.png)
+![19](https://s3.amazonaws.com/bigdatamx/19-team-leads-19-push-to-group-server-showed-up.png)
 
 Ejecute ahora el mismo conjunto de cuatro comandos de Git desde el directorio **GitRepos\MyTeam\MyTeamUtilities**. 
 
@@ -259,7 +259,7 @@ Ejecute ahora el mismo conjunto de cuatro comandos de Git desde el directorio **
  
 > Si está confirmando varios repositorios de Git, use el mismo nombre y la misma dirección de correo electrónico al confirmar cada uno de ellos. Usar el mismo nombre y la misma dirección de correo electrónico resulta muy cómodo más adelante al crear paneles de Power BI y realizar el seguimiento de las actividades de Git en varias bases de datos.
 
-![20](./media/team-lead-tasks/team-leads-20-git-config-name.png)
+![20](https://s3.amazonaws.com/bigdatamx/20-team-leads-20-git-config-name.png)
 
 
 ## <a name="3-create-team-data-and-analytics-resources-optional"></a>3. Creación de datos y recursos de análisis de equipo (opcional)
@@ -277,29 +277,29 @@ Ejecute este script desde la línea de comandos de PowerShell:
     wget "https://raw.githubusercontent.com/Azure/Azure-MachineLearning-DataScience/master/Misc/TDSP/CreateFileShare.ps1" -outfile "CreateFileShare.ps1"
     .\CreateFileShare.ps1
 
-![21](./media/team-lead-tasks/team-leads-21-create-fileshare-win.png)   
+![21](https://s3.amazonaws.com/bigdatamx/21-team-leads-21-create-fileshare-win.png)   
 
 Cuando se le pida, inicie sesión en su cuenta de Microsoft Azure:
 
-![22](./media/team-lead-tasks/team-leads-22-file-create-s1.png)
+![22](https://s3.amazonaws.com/bigdatamx/22-team-leads-22-file-create-s1.png)
 
 Seleccione la suscripción de Azure que quiere usar:
 
-![23](./media/team-lead-tasks/team-leads-23-file-create-s2.png)
+![23](https://s3.amazonaws.com/bigdatamx/23-team-leads-23-file-create-s2.png)
 
 Seleccione la cuenta de almacenamiento que usará o cree una nueva en la suscripción seleccionada:
 
-![24](./media/team-lead-tasks/team-leads-24-file-create-s3.png)
+![24](https://s3.amazonaws.com/bigdatamx/24-team-leads-24-file-create-s3.png)
 
 Escriba el nombre del almacenamiento de Azure File Storage que se va a crear. Solo se aceptan caracteres en minúscula, números y guiones (-):
 
-![25](./media/team-lead-tasks/team-leads-25-file-create-s4.png)
+![25](https://s3.amazonaws.com/bigdatamx/25-team-leads-25-file-create-s4.png)
 
 Para facilitar el montaje y el uso compartido de este almacenamiento después de crearlo, guarde la información de Azure File Storage en un archivo de texto y anote la ruta de acceso a su ubicación. En concreto, necesita este archivo para montar el almacenamiento de Azure File Storage en las máquinas virtuales de Azure de la sección siguiente. 
 
 Es una buena práctica insertar este archivo de texto en el repositorio ProjectTemplate del equipo. Se recomienda colocarlo en el directorio **Docs\DataDictionaries**. Por lo tanto, todos los proyectos de su equipo pueden acceder a este recurso de datos. 
 
-![26](./media/team-lead-tasks/team-leads-26-file-create-s5.png)
+![26](https://s3.amazonaws.com/bigdatamx/26-team-leads-26-file-create-s5.png
 
 
 ### <a name="create-azure-file-storage-with-a-linux-script"></a>Creación de almacenamiento de Azure File Storage con un script de Linux
@@ -311,25 +311,25 @@ Ejecute este script desde el shell de Linux:
 
 Inicie sesión en su cuenta de Microsoft Azure siguiendo las instrucciones que aparecen en esta pantalla:
 
-![27](./media/team-lead-tasks/team-leads-27-file-create-linux-s1.png)
+![27](https://s3.amazonaws.com/bigdatamx/27-team-leads-27-file-create-linux-s1.png)
 
 Seleccione la suscripción de Azure que quiere usar:
 
-![28](./media/team-lead-tasks/team-leads-28-file-create-linux-s2.png)
+![28](https://s3.amazonaws.com/bigdatamx/28-team-leads-28-file-create-linux-s2.png)
 
 Seleccione la cuenta de almacenamiento que usará o cree una nueva en la suscripción seleccionada:
 
-![29](./media/team-lead-tasks/team-leads-29-file-create-linux-s3.png)
+![29](https://s3.amazonaws.com/bigdatamx/29-team-leads-29-file-create-linux-s3.png)
 
 Escriba el nombre del almacenamiento de Azure File Storage que quiere crear; solo se aceptan caracteres en minúscula números y guiones (-):
 
-![30](./media/team-lead-tasks/team-leads-30-file-create-linux-s4.png)
+![30](https://s3.amazonaws.com/bigdatamx/30-team-leads-30-file-create-linux-s4.png)
 
 Para facilitar el acceso a este almacenamiento después de crearlo, guarde la información de Azure File Storage en un archivo de texto y anote la ruta de acceso a su ubicación. En concreto, necesita este archivo para montar el almacenamiento de Azure File Storage en las máquinas virtuales de Azure de la sección siguiente.
 
 Es una buena práctica insertar este archivo de texto en el repositorio ProjectTemplate del equipo. Se recomienda colocarlo en el directorio **Docs\DataDictionaries**. Por lo tanto, todos los proyectos de su equipo pueden acceder a este recurso de datos. 
 
-![31](./media/team-lead-tasks/team-leads-31-file-create-linux-s5.png)
+![31](https://s3.amazonaws.com/bigdatamx/31-team-leads-31-file-create-linux-s5.png)
 
 
 ## <a name="4-mount-azure-file-storage-optional"></a>4. Montaje del almacenamiento de Azure File Storage (opcional)
@@ -345,68 +345,68 @@ Primero se le pedirá que inicie sesión, si aún no lo ha hecho.
 
 Haga clic en **Entrar** o en **S** para continuar cuando se le pregunte si tiene un archivo de información de Azure File Storage y luego especifique el ***nombre y la ruta de acceso completa** del archivo que creó en el paso anterior. La información para montar un almacenamiento de Azure File Storage se lee directamente de ese archivo y ya está listo para ir al paso siguiente.
 
-![32](./media/team-lead-tasks/team-leads-32-attach-s1.png)
+![32](https://s3.amazonaws.com/bigdatamx/32-team-leads-32-attach-s1.png)
 
 > [AZURE.NOTE] Si no tiene un archivo que contenga la información de Azure File Storage, al final de esta sección se proporcionan los pasos para escribir la información con el teclado.
 
 A continuación, se le pide que escriba el nombre de la unidad que se va a agregar a la máquina virtual. En la pantalla se imprime una lista de nombres de unidad existente. Debe proporcionar un nombre de unidad que no exista en la lista.
 
-![33](./media/team-lead-tasks/team-leads-33-attach-s2.png)
+![33](https://s3.amazonaws.com/bigdatamx/33-team-leads-33-attach-s2.png)
 
 Confirme que se ha montado correctamente una nueva unidad F en la máquina.
 
-![34](./media/team-lead-tasks/team-leads-34-attach-s3.png)
+![34](https://s3.amazonaws.com/bigdatamx/34-team-leads-34-attach-s3.png)
 
 **Cómo especificar manualmente la información de Azure File Storage:** si no tiene su información de Azure File Storage en un archivo de texto, puede seguir las instrucciones de la siguiente pantalla para escribir la suscripción necesaria, la cuenta de almacenamiento y la información de Azure File Storage:
 
-![35](./media/team-lead-tasks/team-leads-35-attach-s4.png)
+![35](https://s3.amazonaws.com/bigdatamx/35-team-leads-35-attach-s4.png)
 
 Escriba el nombre de la suscripción de Azure, seleccione la cuenta de almacenamiento donde se crea el almacenamiento de Azure File Storage y escriba el nombre de dicho almacenamiento:
 
-![36](./media/team-lead-tasks/team-leads-36-attach-s5.png)
+![36](https://s3.amazonaws.com/bigdatamx/36-team-leads-36-attach-s5.png)
 
 ### <a name="mount-azure-file-storage-with-a-linux-script"></a>Montaje del almacenamiento de Azure File Storage con un script de Linux
 
     wget "https://raw.githubusercontent.com/Azure/Azure-MachineLearning-DataScience/master/Misc/TDSP/AttachFileShare.sh"
     bash AttachFileShare.sh
 
-![37](./media/team-lead-tasks/team-leads-37-attach-s1-linux.png)
+![37](https://s3.amazonaws.com/bigdatamx/37-team-leads-37-attach-s1-linux.pn)
 
 Primero se le pedirá que inicie sesión, si aún no lo ha hecho. 
 
 Haga clic en **Entrar** o en **S** para continuar cuando se le pregunte si tiene un archivo de información de Azure File Storage y luego especifique el ***nombre y la ruta de acceso completa** del archivo que creó en el paso anterior. La información para montar un almacenamiento de Azure File Storage se lee directamente de ese archivo y ya está listo para ir al paso siguiente.
 
-![38](./media/team-lead-tasks/team-leads-38-attach-s2-linux.png)
+![38](https://s3.amazonaws.com/bigdatamx/38-team-leads-38-attach-s2-linux.pn)
 
 A continuación, se le pide que escriba el nombre de la unidad que se va a agregar a la máquina virtual. En la pantalla se imprime una lista de nombres de unidad existente. Debe proporcionar un nombre de unidad que no exista en la lista.
 
-![39](./media/team-lead-tasks/team-leads-39-attach-s3-linux.png)
+![39](https://s3.amazonaws.com/bigdatamx/39-team-leads-39-attach-s3-linux.pn)
 
 Confirme que se ha montado correctamente una nueva unidad F en la máquina.
 
-![40](./media/team-lead-tasks/team-leads-40-attach-s4-linux.png)
+![40](https://s3.amazonaws.com/bigdatamx/39-team-leads-39-attach-s4-linux.pn)
 
 **Cómo especificar manualmente la información de Azure File Storage:** si no tiene su información de Azure File Storage en un archivo de texto, puede seguir las instrucciones de la siguiente pantalla para escribir la suscripción necesaria, la cuenta de almacenamiento y la información de Azure File Storage:
 
 - Escriba **n**.
 - Seleccione el índice del nombre de la suscripción donde se creó el almacenamiento de Azure File Storage en el paso anterior:
 
-    ![41](./media/team-lead-tasks/team-leads-41-attach-s5-linux.png)
+    ![41](https://s3.amazonaws.com/bigdatamx/41-team-leads-41-attach-s5-linux.png)
 
 - Seleccione la cuenta de almacenamiento de la suscripción y escriba el nombre del almacenamiento de Azure File Storage:
 
-    ![42](./media/team-lead-tasks/team-leads-42-attach-s6-linux.png)
+    ![42](https://s3.amazonaws.com/bigdatamx/42-team-leads-42-attach-s6-linux.png)
 
 - Escriba el nombre de la unidad que se va a agregar a la máquina, que debe ser distinto de los ya existentes:
 
-    ![43](./media/team-lead-tasks/team-leads-43-attach-s7-linux.png)
+    ![43](https://s3.amazonaws.com/bigdatamx/43-team-leads-43-attach-s7-linux.png)
 
 
 ## <a name="5-set-up-security-control-policy"></a>5. Configuración de la directiva de control de seguridad 
 
 En la página principal del servidor de VSTS de su grupo, haga clic en el **icono de engranaje** situado junto al nombre de usuario en la esquina superior derecha y, después, seleccione la pestaña **Seguridad**. Puede agregar aquí miembros al equipo con diferentes permisos.
 
-![44](./media/team-lead-tasks/team-leads-44-add-team-members.png)
+![44](https://s3.amazonaws.com/bigdatamx/44-team-leads-44-add-team-members.png)
 
 ## <a name="next-steps"></a>Pasos siguientes
 
