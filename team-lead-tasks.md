@@ -370,21 +370,21 @@ Escriba el nombre de la suscripción de Azure, seleccione la cuenta de almacenam
     wget "https://raw.githubusercontent.com/Azure/Azure-MachineLearning-DataScience/master/Misc/TDSP/AttachFileShare.sh"
     bash AttachFileShare.sh
 
-![37](https://s3.amazonaws.com/bigdatamx/37-team-leads-37-attach-s1-linux.pn)
+![37](https://s3.amazonaws.com/bigdatamx/37-team-leads-37-attach-s1-linux.png)
 
 Primero se le pedirá que inicie sesión, si aún no lo ha hecho. 
 
 Haga clic en **Entrar** o en **S** para continuar cuando se le pregunte si tiene un archivo de información de Azure File Storage y luego especifique el ***nombre y la ruta de acceso completa** del archivo que creó en el paso anterior. La información para montar un almacenamiento de Azure File Storage se lee directamente de ese archivo y ya está listo para ir al paso siguiente.
 
-![38](https://s3.amazonaws.com/bigdatamx/38-team-leads-38-attach-s2-linux.pn)
+![38](https://s3.amazonaws.com/bigdatamx/38-team-leads-38-attach-s2-linux.png)
 
 A continuación, se le pide que escriba el nombre de la unidad que se va a agregar a la máquina virtual. En la pantalla se imprime una lista de nombres de unidad existente. Debe proporcionar un nombre de unidad que no exista en la lista.
 
-![39](https://s3.amazonaws.com/bigdatamx/39-team-leads-39-attach-s3-linux.pn)
+![39](https://s3.amazonaws.com/bigdatamx/39-team-leads-39-attach-s3-linux.png)
 
 Confirme que se ha montado correctamente una nueva unidad F en la máquina.
 
-![40](https://s3.amazonaws.com/bigdatamx/39-team-leads-39-attach-s4-linux.pn)
+![40](https://s3.amazonaws.com/bigdatamx/39-team-leads-39-attach-s4-linux.png)
 
 **Cómo especificar manualmente la información de Azure File Storage:** si no tiene su información de Azure File Storage en un archivo de texto, puede seguir las instrucciones de la siguiente pantalla para escribir la suscripción necesaria, la cuenta de almacenamiento y la información de Azure File Storage:
 
