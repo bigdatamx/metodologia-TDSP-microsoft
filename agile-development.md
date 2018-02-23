@@ -129,15 +129,15 @@ En este artículo se explica cómo configurar una plantilla de proceso de cienci
 
 2. Vaya a **Todos los procesos** -> **Procesos**, en **Agile** y haga clic en **Crear proceso heredado**. A continuación, ponga el nombre de proceso "AgileDataScienceProcess" y haga clic en **Crear proceso**.
 
-    ![11](./media/agile-development/11-agileds.png)
+    ![11](https://s3.amazonaws.com/bigdatamx/11-agileds.png)
 
 3. En la pestaña **AgileDataScienceProcess** -> **Tipos de elementos de trabajo**, deshabilite los tipos de elementos de trabajo **Epopeya**, **Característica**, **Caso de usuario** y **Tarea** por **Configurar -> Deshabilitar**
 
-    ![12](./media/agile-development/12-disable.png)
+    ![12](https://s3.amazonaws.com/bigdatamx/12-disable.png)
 
 4. Vaya a la pestaña **AgileDataScienceProcess** -> **Niveles de trabajo pendiente**. Reemplace el nombre "Epopeyas" por "Proyectos de TDSP" haciendo clic en **Configurar** -> **Editar/Cambiar nombre**. En el mismo cuadro de diálogo, haga clic en **+Nuevo tipo de elemento de trabajo** en "Proyecto de ciencia de datos" y establezca el valor de **Tipo de elemento de trabajo predeterminado** en "Proyecto de TDSP" 
 
-    ![13](./media/agile-development/13-rename.png)  
+    ![13](https://s3.amazonaws.com/bigdatamx/13-rename.png)  
 
 5. De forma similar, reemplace el nombre de trabajo pendiente "Características" por "Fases de TDSP" y agregue lo siguiente al **Nuevo tipo de elemento de trabajo**:
 
@@ -152,7 +152,7 @@ En este artículo se explica cómo configurar una plantilla de proceso de cienci
 
 8. Después de estos pasos, los niveles de trabajo pendiente deberían tener el aspecto siguiente:
 
-    ![14](./media/agile-development/14-template.png)  
+    ![14](https://s3.amazonaws.com/bigdatamx/14-template.png)  
 
  
 ### <a name="create-data-science-work-items"></a>Crear elementos de trabajo de ciencia de datos
@@ -161,21 +161,21 @@ Una vez creada la plantilla de proceso de ciencia de datos, puede crear y realiz
 
 1. Cuando cree un nuevo proyecto de equipo, seleccione "Agile\AgileDataScienceProcess" como **Proceso de elemento de trabajo**:
 
-    ![15](./media/agile-development/15-newproject.png)
+    ![15](https://s3.amazonaws.com/bigdatamx/15-newproject.png)
 
 2. Vaya al proyecto de equipo recién creado y haga clic en **Trabajo** -> **Trabajos pendientes**.
 
 3. Haga que "Proyectos de TDSP" sea visible haciendo clic en **Definir la configuración del equipo** y compruebe "Proyectos de TDSP"; a continuación, haga clic en Guardar.
 
-    ![16](./media/agile-development/16-enabledsprojects.png)
+    ![16](https://s3.amazonaws.com/bigdatamx/16-enabledsprojects.png)
 
 4. Ahora puede empezar a crear los elementos de trabajo específicos de la ciencia de datos.
 
-    ![17](./media/agile-development/17-dsworkitems.png)
+    ![17](https://s3.amazonaws.com/bigdatamx/17-dsworkitems.png)
 
 5. A continuación se muestra un ejemplo del aspecto que deberían tener los elementos de trabajo del proyecto de ciencia de datos:
 
-    ![18](./media/agile-development/18-workitems.png)
+    ![18](https://s3.amazonaws.com/bigdatamx/18-workitems.png)
 
 
 ## <a name="next-steps"></a>Pasos siguientes

@@ -30,17 +30,17 @@ VSTS proporciona una manera práctica de conectar un elemento de trabajo (un cas
 
 Para conectar un elemento de trabajo a una nueva rama, haga doble clic en un elemento de trabajo y, en la ventana emergente, haga clic en **Crear una rama nueva** en **+ Agregar vínculo**.  
 
-![1](./media/collaborative-coding-with-git/1-sprint-board-view.png)
+![1](https://s3.amazonaws.com/bigdatamx/1-sprint-board-view.png)
 
 Proporcione la información para esta nueva rama, como el nombre de la rama, repositorio de GIT base y la rama. El repositorio de GIT elegido debe ser el repositorio en el mismo proyecto de equipo al que pertenece el elemento de trabajo. La rama base puede ser la rama principal o cualquier otra rama existente.
 
-![2](./media/collaborative-coding-with-git/2-create-a-branch.png)
+![2](https://s3.amazonaws.com/bigdatamx/2-create-a-branch.png)
 
 Un procedimiento recomendado es crear una rama de GIT para cada elemento de trabajo del caso. A continuación, para cada elemento de trabajo de la tarea, cree una rama en función de la rama del caso. La organización de las ramas de esta manera jerárquica que se corresponde a las relaciones entre caso y tarea es muy útil cuando hay varias personas trabajando en distintos casos del mismo proyecto, o si hay varias personas trabajando en tareas distintas del mismo caso. Los conflictos pueden reducirse cuando cada miembro del equipo trabaja en una rama distinta y cuando cada miembro trabaja en códigos diferentes u otros artefactos cuando se comparte una rama. 
 
 En la siguiente imagen se muestra la estrategia de bifurcación recomendada para el proceso de ciencia de datos en equipo. Es posible que no necesite tantas ramas como se muestra aquí, especialmente cuando solo tiene a una o dos personas que trabajan en el mismo proyecto, o cuando solo una persona trabaja en todas las tareas de un caso. Pero siempre es un procedimiento recomendado separar la rama de desarrollo de la rama maestra. Esto puede ayudar a evitar que la rama de la versión se interrumpa por las actividades de desarrollo. Encontrará una descripción más completa del modelo de rama de GIT en [A Successful Git Branching Model](http://nvie.com/posts/a-successful-git-branching-model/) (Un modelo correcto de rama de GIT).
 
-![3](./media/collaborative-coding-with-git/3-git-branches.png)
+![3](https://s3.amazonaws.com/bigdatamx/3-git-branches.png)
 
 Para cambiar a la rama en la que desea trabajar, ejecute el siguiente comando en un comando shell (Windows o Linux). 
 
@@ -50,7 +50,7 @@ Si se cambia el *<nombre de la rama\>* a **maestro**, se devuelve a la rama **ma
 
 También puede vincular un elemento de trabajo a una rama existente. En la página **Detalle** de un elemento de trabajo, en lugar de hacer clic en **Crear una rama nueva**, haga clic en **+ Agregar vínculo**. Después, seleccione la rama a la que desea vincular el elemento de trabajo. 
 
-![4](./media/collaborative-coding-with-git/4-link-to-an-existing-branch.png)
+![4](https://s3.amazonaws.com/bigdatamx/4-link-to-an-existing-branch.png)
 
 También puede crear una nueva rama en los comandos GIT Bash. Si falta <nombre de la rama base\>, el <nuevo nombre de rama\> se basa en la rama _maestra_. 
     
@@ -66,7 +66,7 @@ Ahora suponga que realiza algún cambio la rama *data\_ingesta* para el elemento
     git commit -m"added a R scripts"
     git push origin data_ingestion
 
-![5](./media/collaborative-coding-with-git/5-sprint-push-to-branch.png)
+![5](https://s3.amazonaws.com/bigdatamx/5-sprint-push-to-branch.png)
 
 ## 3. <a name='CreateapullrequestonVSTS-3'></a>Creación de una solicitud de incorporación de cambios en VSTS 
 
@@ -74,31 +74,31 @@ Cuando esté listo después de unas confirmaciones e inserciones, para combinar 
 
 Vaya a la página principal del proyecto de equipo y haga clic en **CODE** (Código). Seleccione la rama que se va a combinar y el nombre del repositorio de GIT en el que se desea combinar la rama. Después, haga clic en **Solicitudes de incorporación de cambios** y en **Nueva solicitud de incorporación de cambios** para crear una revisión de la solicitud de incorporación de cambios antes de que el trabajo en la rama se combine en su rama base.
 
-![6](./media/collaborative-coding-with-git/6-spring-create-pull-request.png)
+![6](https://s3.amazonaws.com/bigdatamx/6-spring-create-pull-request.png)
 
 Rellene alguna descripción sobre esta solicitud de incorporación de cambios, agregue revisores y envíelos.
 
-![7](./media/collaborative-coding-with-git/7-spring-send-pull-request.png)
+![7](https://s3.amazonaws.com/bigdatamx/7-spring-send-pull-request.png)
 
 ## 4. <a name='ReviewandMerge-4'></a>Revisión y combinación 
 
 Cuando se crea la solicitud de incorporación de cambios, los revisores reciben una notificación de correo electrónico para revisar dichas solicitudes. Los revisores deben comprobar si los cambios funcionan o no y probar los cambios con el solicitante si es posible. En función de su evaluación, los revisores pueden aprobar o rechazar la solicitud de incorporación de cambios. 
 
-![8](./media/collaborative-coding-with-git/8-add_comments.png)
+![8](https://s3.amazonaws.com/bigdatamx/8-add_comments.png)
 
-![9](./media/collaborative-coding-with-git/9-spring-approve-pullrequest.png)
+![9](https://s3.amazonaws.com/bigdatamx/9-spring-approve-pullrequest.png)
 
 Después de realizar la revisión, la rama de trabajo se combina en la rama base, haga clic en el botón **Completar**. Puede optar por eliminar la rama de trabajo después de haberse combinado. 
 
-![10](./media/collaborative-coding-with-git/10-spring-complete-pullrequest.png)
+![10](https://s3.amazonaws.com/bigdatamx/10-spring-complete-pullrequest.png)
 
 Confirme en la esquina superior izquierda que la solicitud está marcada como **COMPLETADO**. 
 
-![11](./media/collaborative-coding-with-git/11-spring-merge-pullrequest.png)
+![11](https://s3.amazonaws.com/bigdatamx/11-spring-merge-pullrequest.png)
 
 Al volver al repositorio, bajo **CÓDIGO**, se le pide que haya cambiado a la rama principal.
 
-![12](./media/collaborative-coding-with-git/12-spring-branch-deleted.png)
+![12](https://s3.amazonaws.com/bigdatamx/12-spring-branch-deleted.png)
 
 También puede utilizar los comandos de Git siguientes para combinar la rama de trabajo con la rama base y eliminar la rama de trabajo después de la combinación:
 
@@ -106,7 +106,7 @@ También puede utilizar los comandos de Git siguientes para combinar la rama de 
     git merge data_ingestion
     git branch -d data_ingestion
 
-![13](./media/collaborative-coding-with-git/13-spring-branch-deleted-commandline.png)
+![13](https://s3.amazonaws.com/bigdatamx/13-spring-branch-deleted-commandline.png)
 
 
  
