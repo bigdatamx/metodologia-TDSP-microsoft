@@ -25,7 +25,7 @@ Este tutorial describe las tareas que el responsable de proyecto debe completar 
 
 Un **responsable de proyecto** administra las actividades diarias de los científicos de datos en un proyecto de ciencia de datos específico. El flujo de trabajo de las tareas que van a realizar los responsables de equipo para configurar este entorno se representa en la figura siguiente:
 
-![1](./media/project-lead-tasks/project-leads-1-tdsp-creating-projects.png)
+![1](https://s3.amazonaws.com/bigdatamx/1-project-leads-1-tdsp-creating-projects.png)
 
 En este tema se tratan las tareas 1,2 y 6 de este flujo de trabajo para los responsables de proyecto.
 
@@ -61,24 +61,24 @@ Para resumir aquí, se deben cumplir los siguientes requisitos antes de comenzar
 - Inicie sesión en el servidor de VSTS del grupo en *https://\<Nombre del servidor de VSTS\>. visualstudio.com*. 
 - En **Proyectos y equipos recientes**, haga clic en **Examinar**. Una ventana emergente muestra todos los proyectos de equipo en el servidor VSTS. 
 
-    ![2](./media/project-lead-tasks/project-leads-2-create-project-repo.png)
+    ![2](https://s3.amazonaws.com/bigdatamx/2-project-leads-2-create-project-repo.png)
 
 - Haga clic en el nombre del proyecto de equipo en el que va a crear el repositorio del proyecto. En este ejemplo, haga clic en **MyTeam**. 
 - Después, haga clic en **Navegar** para acceder a la página principal del proyecto de equipo **MyTeam**:
 
-    ![3](./media/project-lead-tasks/project-leads-3-create-project-repo-2.png)
+    ![3](https://s3.amazonaws.com/bigdatamx/3-project-leads-3-create-project-repo-2.png)
 
 - Haga clic en **Colaborar en el código** para que se dirijan a la página principal de git del proyecto de equipo.  
 
-    ![4](./media/project-lead-tasks/project-leads-4-create-project-repo-3.png)
+    ![4](https://s3.amazonaws.com/bigdatamx/4-project-leads-4-create-project-repo-3.png)
 
 - Haga clic en la flecha hacia abajo en la esquina superior izquierda y seleccione **+ Nuevo repositorio**. 
     
-    ![5](./media/project-lead-tasks/project-leads-5-create-project-repo-4.png)
+    ![5](https://s3.amazonaws.com/bigdatamx/5-project-leads-5-create-project-repo-4.png)
 
 - En la ventana **Crear un nuevo repositorio**, indique un nombre para el repositorio de git del proyecto. Asegúrese de que selecciona **Git** como tipo de repositorio. En este ejemplo, se utiliza el nombre *DSProject1*. 
 
-    ![6](./media/project-lead-tasks/project-leads-6-create-project-repo-5.png)
+    ![6](https://s3.amazonaws.com/bigdatamx/6-project-leads-6-create-project-repo-5.png)
 
 - Para crear el repositorio de Git del proyecto ***DSProject1***, haga clic en **Crear**.
 
@@ -117,13 +117,13 @@ En este ejemplo, tenemos:
 
 ***https://mysamplegroup.visualstudio.com/MyTeam/_git/MyTeamProjectTemplate***. 
 
-![7](./media/project-lead-tasks/project-leads-7-clone-team-project-template.png)
+![7](https://s3.amazonaws.com/bigdatamx/7-project-leads-7-clone-team-project-template.png)
             
 **Linux**
 
     git clone <the SSH URL of the TeamProjectTemplate repository>
         
-![8](./media/project-lead-tasks/project-leads-8-clone-team-project-template-linux.png)
+![8](https://s3.amazonaws.com/bigdatamx/8-project-leads-8-clone-team-project-template-linux.png)
 
 Si se utiliza VSTS como plataforma de hospedaje de código, por lo general, la *dirección URL SSH del repositorio de plantillas de proyecto de equipo* es la siguiente:
 
@@ -141,7 +141,7 @@ Cambie el directorio a **GitRepos** y ejecute el comando siguiente para clonar e
             
     git clone <the HTTPS URL of the Project repository>
 
-![9](./media/project-lead-tasks/project-leads-9-clone-project-repository.png)
+![9](https://s3.amazonaws.com/bigdatamx/9-project-leads-9-clone-project-repository.png)
 
 Si se utiliza VSTS como plataforma de hospedaje de código, por lo general, la _dirección URL HTTPS del repositorio del proyecto_ es ***https://\<Nombre de servidor de VSTS\>.visualstudio.com/\<Nombre de proyecto de equipo>/_git/<Nombre de repositorio del proyecto\>***. En este ejemplo, tenemos ***https://mysamplegroup.visualstudio.com/MyTeam/_git/DSProject1***.
 
@@ -149,7 +149,7 @@ Si se utiliza VSTS como plataforma de hospedaje de código, por lo general, la _
 
     git clone <the SSH URL of the Project repository>
 
-![10](./media/project-lead-tasks/project-leads-10-clone-project-repository-linux.png)
+![10](https://s3.amazonaws.com/bigdatamx/10-project-leads-10-clone-project-repository-linux.png)
 
 Si se utiliza VSTS como plataforma de hospedaje de código, por lo general, la _dirección URL SSH del repositorio del proyecto_ es _ssh://<Nombre de servidor de VSTS\>@<Nombre de servidor de VSTS\>.visualstudio.com:22/<Your Team Project Name>/\_git/<Su nombre de repositorio del proyecto\>. En este ejemplo, tenemos ***ssh://mysamplegroup@mysamplegroup.visualstudio.com:22/MyTeam/_git/DSProject1***.
 
@@ -162,22 +162,22 @@ Ahora en el equipo local, tiene que copiar el contenido de _D3_ a _D5_, excepto 
     wget "https://raw.githubusercontent.com/Azure/Azure-MachineLearning-DataScience/master/Misc/TDSP/tdsp_local_copy_win.ps1" -outfile "tdsp_local_copy_win.ps1"
     .\tdsp_local_copy_win.ps1 -role 3
     
-![11](./media/project-lead-tasks/project-leads-11-local-copy-project-lead-new.png)
+![11](https://s3.amazonaws.com/bigdatamx/11-project-leads-11-local-copy-project-lead-new.png)
 
 Ahora puede ver que en la carpeta _DSProject1_ se copian todos los archivos (excepto .git) en _MyTeamProjectTemplate_.
 
-![12](./media/project-lead-tasks/project-leads-12-teamprojectTemplate_copied_to_local.png)
+![12](https://s3.amazonaws.com/bigdatamx/12-project-leads-12-teamprojecttemplate_copied_to_local.png)
 
 **Linux**
             
     wget "https://raw.githubusercontent.com/Azure/Azure-MachineLearning-DataScience/master/Misc/TDSP/tdsp_local_copy_linux.sh"
     bash tdsp_local_copy_linux.sh 3
         
-![13](./media/project-lead-tasks/project-leads-13-local_copy_project_lead_linux_new.png)
+![13](https://s3.amazonaws.com/bigdatamx/13-project-leads-13-local_copy_project_lead_linux_new.png)
 
 Ahora puede ver que en la carpeta _DSProject1_ se copian todos los archivos (excepto los metadatos de .git) en _MyTeamProjectTemplate_.
 
-![14](./media/project-lead-tasks/project-leads-14-teamprojectTemplate_copied_to_local_linux_new.png)
+![14](https://s3.amazonaws.com/bigdatamx/14-project-leads-14-teamprojecttemplate_copied_to_local_linux_new.png)
 
 
 ### <a name="customize-d5-if-you-need-to-optional"></a>Personalización de D5 si se necesita (opcional)
@@ -204,7 +204,7 @@ Ahora tiene que insertar contenido de **_DSProject1_** al repositorio _R5_ en el
  
 > Si están confirmando varios repositorios de Git, use el mismo nombre y la misma dirección de correo electrónico en todos ellos. Usar el mismo nombre y la misma dirección de correo electrónico resulta muy cómodo más adelante al crear paneles de Power BI y realizar el seguimiento de las actividades de Git en varias bases de datos.
 
-![15](./media/project-lead-tasks/project-leads-15-git-config-name.png)
+![15](https://s3.amazonaws.com/bigdatamx/15-project-leads-15-git-config-name.png)
 
 
 ## <a name="6-create-and-mount-azure-file-storage-as-project-resources-optional"></a>6. Creación y montaje del almacenamiento de archivos de Azure como recursos del proyecto (opcional)
