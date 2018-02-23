@@ -1,4 +1,4 @@
----
+	---
 title: Tareas del proceso de ciencia de datos en equipo para un colaborador individual en Azure | Microsoft Docs
 description: Esquema de las tareas de un colaborador individual en un proyecto de equipo de ciencia de datos.
 documentationcenter: 
@@ -25,7 +25,7 @@ En este tema se describen las tareas que debe realizar un colaborador individual
 
 Las tareas de los colaboradores individuales del proyecto (científicos de datos) para configurar el entorno del proceso de ciencia de datos en equipo para el proyecto se muestran como sigue: 
 
-![1](./media/project-ic-tasks/project-ic-1-tdsp-data-scientist.png)
+![1](https://s3.amazonaws.com/bigdatamx/1-project-ic-1-tdsp-data-scientist.png)
 
 - **GroupUtilities** es el repositorio que el grupo mantiene para compartir utilidades a todo el grupo. 
 - **TeamUtilities** es el repositorio que el equipo mantiene específicamente para él. 
@@ -80,11 +80,11 @@ Ejecute uno de los siguientes comandos (según corresponda al sistema operativo)
     git clone <the URL of the TeamUtilities repository>
     git clone <the URL of the Project repository>
     
-![2](./media/project-ic-tasks/project-ic-2-clone-three-repo-to-ic.png)
+![2](https://s3.amazonaws.com/bigdatamx/2-project-ic-2-clone-three-repo-to-ic.png)
 
 Confirme que ve las tres carpetas en el directorio del proyecto.
 
-![3](./media/project-ic-tasks/project-ic-3-three-repo-cloned-to-ic.png)
+![3](https://s3.amazonaws.com/bigdatamx/3-project-ic-3-three-repo-cloned-to-ic.png)
 
 **Linux**
     
@@ -92,11 +92,11 @@ Confirme que ve las tres carpetas en el directorio del proyecto.
     git clone <the SSH URL of the TeamUtilities repository>
     git clone <the SSH URL of the Project repository>
 
-![4](./media/project-ic-tasks/project-ic-4-clone-three-repo-to_ic-linux.png)
+![4](https://s3.amazonaws.com/bigdatamx/4-project-ic-4-clone-three-repo-to_ic-linux.png)
 
 Confirme que ve las tres carpetas en el directorio del proyecto.
 
-![5](./media/project-ic-tasks/project-ic-5-three-repo-cloned-to-ic-linux.png)
+![5](https://s3.amazonaws.com/bigdatamx/5-project-ic-5-three-repo-cloned-to-ic-linux.png)
 
 ## <a name="step-4-5-mount-azure-file-storage-to-your-dsvm-optional"></a>Paso 4-5: Montar el almacenamiento de archivos de Azure en la DSVM (opcional)
 
