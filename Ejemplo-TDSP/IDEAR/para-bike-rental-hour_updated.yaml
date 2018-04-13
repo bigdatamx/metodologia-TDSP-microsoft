@@ -1,0 +1,4 @@
+!expr |
+  function (x, ...)
+  UseMethod("config")
+

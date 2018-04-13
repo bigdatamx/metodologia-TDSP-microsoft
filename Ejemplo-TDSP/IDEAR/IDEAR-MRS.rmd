@@ -1,0 +1,545 @@
+options(warn=-1)
+
+# install required packages
+repos.date <- "2017-08-01"
+options(repos = c(CRAN = paste("https://mran.revolutionanalytics.com/snapshot/",
+                               repos.date,sep="")))
+
+#options(repos='http://cran.rstudio.com/')
+list.of.packages <- c('Hmisc', 'psych', 'corrgram', 'yaml', 'entropy', 'vcd', 'shiny', 'corrplot', 'scatterplot3d', 'DescTools', 'xtable', 'shinyjs', 'RODBC','parallel','doSNOW','foreach', 'dplyr', 'lubridate', 'tcltk', 'tcltk2')
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,'Package'])]
+if(length(new.packages))
+  install.packages(new.packages)
+
+library(yaml)
+library(RODBC)
+library(foreach)
+library(shiny)
+library(RevoScaleR)
+library(devtools)
+install_github("RevoEnhancements", "RevoEnhancements")
+library(RevoEnhancements)
+library(tools)
+library(vcd)
+library(tcltk)
+library(tcltk2)
+
+# set Shiny window size
+window_height <- 1000
+
+# Set a parallel computing context
+parallelContext = RxLocalParallel()
+rxSetComputeContext(parallelContext)
+
+# select yaml file
+OS_type <- .Platform$OS.type
+if (OS_type == 'windows'){
+  winDialog(type = 'ok', 'Please select the .yaml file in the next popup window. Click OK to proceed.')
+} else{
+  print('Please input the path to the .yaml file after the next prompt.')
+}
+
+yaml_file <- tk_choose.files(caption='Select yaml File', multi = FALSE)
+config <- yaml.load_file(yaml_file)
+
+if(is.null(config$RowsPerRead)){
+  config$RowsPerRead <- 500000
+} else {
+  config$RowsPerRead <- as.integer(config$RowsPerRead)
+}
+# data source
+if(is.null(config$DataSource) || config$DataSource == 'local'){
+  infile <- file.path(config$DataFilePath)
+  outfile <- paste0(config$DataFilePath,'_mrs.xdf')
+  if(file_ext(config$DataFilePath)=='xdf'){
+    data <- RxXdfData(infile)
+  } else {
+    #input <- RxTextData(file = infile, delimiter = config$Separator, firstRowIsColNames = config$HasHeader)
+    #rxImport(inData = input, outFile = outfile, overwrite = TRUE)
+    rxTextToXdf(inFile = infile, outFile = outfile,  stringsAsFactors = TRUE, overwrite = TRUE, columnDelimiters = config$Separator, firstRowIsColNames = config$HasHeader, reportProgress = 0, rowsPerRead=config$RowsPerRead)
+    data =  RxXdfData(outfile)
+  }
+} else {
+  dbhandle <- odbcDriverConnect(paste0('driver={SQL Server};server=',config$Server,';database=',config$Database,';Uid=',config$Username,';Pwd=',config$Password))
+  dbdata <- RxOdbcData(sqlQuery = config$Query, connectionString = dbhandle)
+  infile <- file.path(getwd(),'db_mrs.xdf')
+  rxImport(dbdata, infile , overwrite = TRUE)
+  data <- RxXdfData(infile)
+}
+
+# get a sample of the data if the original data is too large.
+records<- dim(data)[1]
+if(is.null(config$SampleRecords)){
+  sample_records<- 10000
+} else {
+  sample_records<-config$SampleRecords
+}
+
+if(records>sample_records)
+{
+  sampled_data_frame <- head(data, sample_records)
+  #sampled_data_frame <- rxSample2Df(data = data, size = sample_records, replace = FALSE)
+  sampleoutfile <-paste0(config$DataFilePath,'_sample.xdf')
+  sampled_data <- rxDataFrameToXdf(data = sampled_data_frame, outFile = sampleoutfile, overwrite = TRUE)
+} else {
+  sampled_data_frame <- rxImport(inData = data)
+  sampled_data <- data
+}
+
+# add datetime columns
+library(lubridate)
+
+autogen_datetime_columns <- character()
+if(!is.null(config$DateTimeColumns)){
+  for (dt in names(config$DateTimeColumns)) {
+    sampled_data_frame[[dt]] <- as.POSIXct(sampled_data_frame[[dt]], format = config$DateTimeColumns[[dt]])
+    new_col_name <- paste0(dt, '_autogen_year')
+    sampled_data_frame[[new_col_name]] <- year(sampled_data_frame[[dt]])
+    if (length(unique(na.omit(sampled_data_frame[[new_col_name]]))) == 1){
+      sampled_data_frame[[new_col_name]] <- NULL
+    } else{
+      autogen_datetime_columns <- c(autogen_datetime_columns, new_col_name)
+    }
+    new_col_name <- paste0(dt, '_autogen_month')
+    sampled_data_frame[[new_col_name]] <- month(sampled_data_frame[[dt]])
+    if (length(unique(na.omit(sampled_data_frame[[new_col_name]]))) == 1){
+      sampled_data_frame[[new_col_name]] <- NULL
+    } else{
+      autogen_datetime_columns <- c(autogen_datetime_columns, new_col_name)
+    }
+    new_col_name <- paste0(dt, '_autogen_week')
+    sampled_data_frame[[new_col_name]] <- week(sampled_data_frame[[dt]])
+    if (length(unique(na.omit(sampled_data_frame[[new_col_name]]))) == 1){
+      sampled_data_frame[[new_col_name]] <- NULL
+    } else{
+      autogen_datetime_columns <- c(autogen_datetime_columns, new_col_name)
+    }
+    new_col_name <- paste0(dt, '_autogen_day')
+    sampled_data_frame[[new_col_name]] <- day(sampled_data_frame[[dt]])
+    if (length(unique(na.omit(sampled_data_frame[[new_col_name]]))) == 1){
+      sampled_data_frame[[new_col_name]] <- NULL
+    } else{
+      autogen_datetime_columns <- c(autogen_datetime_columns, new_col_name)
+    }
+    new_col_name <- paste0(dt, '_autogen_wday')
+    sampled_data_frame[[new_col_name]] <- wday(sampled_data_frame[[dt]])
+    if (length(unique(na.omit(sampled_data_frame[[new_col_name]]))) == 1){
+      sampled_data_frame[[new_col_name]] <- NULL
+    } else{
+      autogen_datetime_columns <- c(autogen_datetime_columns, new_col_name)
+    }
+    new_col_name <- paste0(dt, '_autogen_hour')
+    sampled_data_frame[[new_col_name]] <- hour(sampled_data_frame[[dt]])
+    if (length(unique(na.omit(sampled_data_frame[[new_col_name]]))) == 1){
+      sampled_data_frame[[new_col_name]] <- NULL
+    } else{
+      autogen_datetime_columns <- c(autogen_datetime_columns, new_col_name)
+    }
+    new_col_name <- paste0(dt, '_autogen_minute')
+    sampled_data_frame[[new_col_name]] <- minute(sampled_data_frame[[dt]])
+    if (length(unique(na.omit(sampled_data_frame[[new_col_name]]))) == 1){
+      sampled_data_frame[[new_col_name]] <- NULL
+    } else{
+      autogen_datetime_columns <- c(autogen_datetime_columns, new_col_name)
+    }
+    new_col_name <- paste0(dt, '_autogen_second')
+    sampled_data_frame[[new_col_name]] <- second(sampled_data_frame[[dt]])
+    if (length(unique(na.omit(sampled_data_frame[[new_col_name]]))) == 1){
+      sampled_data_frame[[new_col_name]] <- NULL
+    } else{
+      autogen_datetime_columns <- c(autogen_datetime_columns, new_col_name)
+    }
+    config$ColumnsToExclude <- c(config$ColumnsToExclude, dt)
+  }
+}
+
+sampleoutfile <-paste0(config$DataFilePath,'_sample.xdf')
+sampled_data <- rxDataFrameToXdf(data = sampled_data_frame, outFile = sampleoutfile, overwrite = TRUE)
+
+# Add datetime components to conf$CategoricalColumns
+CategoricalColumns <- config$CategoricalColumns
+config$CategoricalColumns <- c(config$CategoricalColumns, autogen_datetime_columns)
+
+# detect data types
+detectDataTypes <- function(data, cat_auto_detect_threshold = 3){
+  isNumerical<- vector(mode='logical', length = length(names(data)))
+  names(isNumerical) <- names(data)
+  isCategorical<-vector(mode='logical', length = length(names(data)))
+  names(isCategorical)<- names(data)
+
+  info = rxGetInfo(data = data, getVarInfo = TRUE)
+
+  names <- names(data)
+  for(name in names) {
+    type<- (info$varInfo[[name]])[[1]]
+    if(type=='integer'){
+      varSummary <- rxSummary(formula = as.formula(paste0('~ F(',name,')')), data = data, reportProgress = 0, rowsPerRead=config$RowsPerRead)
+      uniqueValues <- dim(varSummary$categorical[[1]])[1]
+      if(records/uniqueValues > 500 || uniqueValues <= cat_auto_detect_threshold)
+      {
+        isCategorical[name]<- TRUE
+      } else{
+        isNumerical[[name]] = TRUE
+      }
+    } else if (type=='numeric'){
+      isNumerical[name]<-TRUE
+    } else if(type=='character' || type=='logical'){
+        isCategorical[name]<- TRUE
+    } else if(type=='factor'){
+        isCategorical[name]=TRUE
+        level<-(info$varInfo[[name]])[[4]]
+        if( records/level<2 )
+        {
+          config$ColumnsToExclude<-c(config$ColumnsToExclude, name)
+        }
+    }
+  }
+  result<-cbind(isNumerical, isCategorical)
+  return (result)
+}
+types<- detectDataTypes(data)
+
+if(!is.null(config$DateTimeColumns))
+{
+  autogen_datetime_columns_isNumerical<- rep(F, length = length(autogen_datetime_columns))
+  names(autogen_datetime_columns_isNumerical) <- autogen_datetime_columns
+
+  autogen_datetime_columns_isCategorical<-rep(T, length = length(autogen_datetime_columns))
+  names(autogen_datetime_columns_isCategorical)<- autogen_datetime_columns
+
+  autogen_datetime_columns_types <- cbind(autogen_datetime_columns_isNumerical, autogen_datetime_columns_isCategorical)
+  types <- rbind(types,autogen_datetime_columns_types)
+}
+
+
+isNumerical <- types[,1]
+isCategorical <- types[,2]
+
+# override auto-detected isCategorical with the specified categorical variables in yaml
+if(!is.null(config$CategoricalColumns)){
+  config$CategoricalColumns <- make.names(config$CategoricalColumns, unique=TRUE)
+  for(v in config$CategoricalColumns){
+    isCategorical[v] <- TRUE
+    isNumerical[v] <- FALSE
+  }
+}
+# override auto-detected isNumerical with the specified numerical variables in yaml
+if(!is.null(config$NumericalColumns)){
+  config$NumericalColumns <- make.names(config$NumericalColumns, unique = TRUE)
+  for(v in config$NumericalColumns){
+    isNumerical[v] <- TRUE
+    isCategorical[v] <- FALSE
+    }
+}
+
+# populate config$CategoricalColumns and config$NumericalColumns with detected and specified variables
+colNames <- names(sampled_data_frame)
+config$CategoricalColumns <- colNames[isCategorical[colNames] == TRUE]
+config$NumericalColumns <- colNames[isNumerical[colNames] == TRUE]
+
+sampled_data_frame[config$CategoricalColumns] <- lapply(sampled_data_frame[config$CategoricalColumns], factor)
+
+config$ColumnsToExclude <- c(config$ColumnsToExclude, names(config$DateTimeColumns))
+
+# exclude columns from the report
+if(!is.null(config$ColumnsToExclude)){
+  config$CategoricalColumns <- config$CategoricalColumns[!config$CategoricalColumns %in% config$ColumnsToExclude]
+  config$NumericalColumns <- config$NumericalColumns[!config$NumericalColumns %in% config$ColumnsToExclude]
+}
+
+# replace missing values
+if(!is.null(config$MissingValueReplaceWith)){
+  missingValueReplacement <- config$MissingValueReplaceWith
+} else {
+  missingValueReplacement <- 0
+}
+
+# detect task type
+if(is.null(config$Target)){
+  taskType <- 'data_exploration'
+} else if(isCategorical[config$Target]==FALSE){
+  taskType <- 'regression'
+} else {
+  taskType <- 'classification'
+}
+
+# Remove the DateTimeColumns field from the updated YAML file
+config$DateTimeColumns <- NULL
+
+# write updated yaml
+if((!is.null(config$DataSource)) && config$DataSource != 'local'){
+  # if data source is not local file, do not add datetime components into yaml file.
+  config$CategoricalColumns <- CategoricalColumns
+}
+
+new_yaml_file <- paste0(substr(yaml_file, 1, nchar(yaml_file)-5),'_updated.yaml')
+write(as.yaml(config), new_yaml_file)
+
+code = "
+#' ---
+#' title: 'Data Quality Report'
+#' author: 'Team Data Science Process by Microsoft'
+#' output:
+#'  html_document:
+#'    toc: yes
+#' ---
+#+ echo=FALSE
+
+options(warn=-1)
+
+# install required packages
+options(repos='http://cran.rstudio.com/')
+list.of.packages <- c('Hmisc', 'psych', 'corrgram', 'yaml', 'entropy', 'vcd', 'shiny', 'corrplot', 'scatterplot3d', 'DescTools', 'xtable', 'shinyjs', 'RODBC','parallel','doSNOW','foreach', 'dplyr', 'lubridate')
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,'Package'])]
+if(length(new.packages))
+  install.packages(new.packages)
+
+# intall knitr version 1.16
+if (!'knitr' %in% installed.packages()[,'Package']){
+  knitrurl <- 'http://cran.r-project.org/src/contrib/Archive/knitr/knitr_1.12.tar.gz'
+  install.packages(knitrurl, repos=NULL, type='source')
+} else if ('1.16' != installed.packages()['knitr','Version']){
+  remove.packages('knitr')
+  knitrurl <- 'http://cran.r-project.org/src/contrib/Archive/knitr/knitr_1.12.tar.gz'
+  install.packages(knitrurl, repos=NULL, type='source')
+}
+
+library(yaml)
+library(RODBC)
+library(foreach)
+library(shiny)
+library(RevoScaleR)
+library(devtools)
+install_github('RevoEnhancements', 'RevoEnhancements')
+library(RevoEnhancements)
+library(tools)
+library(vcd)
+
+# select yaml file
+# yaml
+yaml_file <- yaml_file_location
+config <- yaml.load_file(yaml_file)
+
+if(is.null(config$RowsPerRead)){
+  config$RowsPerRead <- 500000
+} else {
+  config$RowsPerRead <- as.integer(config$RowsPerRead)
+}
+# data source
+if(is.null(config$DataSource) || config$DataSource == 'local'){
+  infile <- file.path(config$DataFilePath)
+  outfile <- paste0(config$DataFilePath,'_mrs.xdf')
+  if(file_ext(config$DataFilePath)=='xdf'){
+    data <- RxXdfData(infile)
+  } else {
+    rxTextToXdf(inFile = infile, outFile = outfile,  stringsAsFactors = TRUE, overwrite = TRUE, columnDelimiters = config$Separator, firstRowIsColNames = config$HasHeader, reportProgress = 0, rowsPerRead=config$RowsPerRead)
+    data =  RxXdfData(outfile)
+  }
+} else {
+  dbhandle <- odbcDriverConnect(paste0('driver={SQL Server};server=',config$Server,';database=',config$Database,';Uid=',config$Username,';Pwd=',config$Password))
+  data <- RxOdbcData(sqlQuery = config$Query, connectionString = dbhandle)
+}
+
+# get a sample of the data if the original data is too large.
+records<- dim(data)[1]
+if(is.null(config$SampleRecords)){
+  sample_records<- 10000
+} else {
+  sample_records<-config$SampleRecords
+}
+
+if(records>sample_records)
+{
+  sampled_data_frame <- head(data, sample_records)
+  #sampled_data_frame <- rxSample2Df(data = data, size = sample_records, replace = FALSE)
+  sampleoutfile <-paste0(config$DataFilePath,'_sample.xdf')
+  sampled_data <- rxDataFrameToXdf(data = sampled_data_frame, outFile = sampleoutfile, overwrite = TRUE)
+} else {
+  sampled_data_frame <- rxImport(inData = data)
+  sampled_data <- data
+}
+
+# add datetime columns
+library(lubridate)
+
+autogen_datetime_columns <- character()
+if(!is.null(config$DateTimeColumns)){
+  for (dt in names(config$DateTimeColumns)) {
+    sampled_data_frame[[dt]] <- as.POSIXct(sampled_data_frame[[dt]], format = config$DateTimeColumns[[dt]])
+    new_col_name <- paste0(dt, '_autogen_year')
+    sampled_data_frame[[new_col_name]] <- year(sampled_data_frame[[dt]])
+    if (length(unique(na.omit(sampled_data_frame[[new_col_name]]))) == 1){
+      sampled_data_frame[[new_col_name]] <- NULL
+    } else{
+      autogen_datetime_columns <- c(autogen_datetime_columns, new_col_name)
+    }
+    new_col_name <- paste0(dt, '_autogen_month')
+    sampled_data_frame[[new_col_name]] <- month(sampled_data_frame[[dt]])
+    if (length(unique(na.omit(sampled_data_frame[[new_col_name]]))) == 1){
+      sampled_data_frame[[new_col_name]] <- NULL
+    } else{
+      autogen_datetime_columns <- c(autogen_datetime_columns, new_col_name)
+    }
+    new_col_name <- paste0(dt, '_autogen_week')
+    sampled_data_frame[[new_col_name]] <- week(sampled_data_frame[[dt]])
+    if (length(unique(na.omit(sampled_data_frame[[new_col_name]]))) == 1){
+      sampled_data_frame[[new_col_name]] <- NULL
+    } else{
+      autogen_datetime_columns <- c(autogen_datetime_columns, new_col_name)
+    }
+    new_col_name <- paste0(dt, '_autogen_day')
+    sampled_data_frame[[new_col_name]] <- day(sampled_data_frame[[dt]])
+    if (length(unique(na.omit(sampled_data_frame[[new_col_name]]))) == 1){
+      sampled_data_frame[[new_col_name]] <- NULL
+    } else{
+      autogen_datetime_columns <- c(autogen_datetime_columns, new_col_name)
+    }
+    new_col_name <- paste0(dt, '_autogen_wday')
+    sampled_data_frame[[new_col_name]] <- wday(sampled_data_frame[[dt]])
+    if (length(unique(na.omit(sampled_data_frame[[new_col_name]]))) == 1){
+      sampled_data_frame[[new_col_name]] <- NULL
+    } else{
+      autogen_datetime_columns <- c(autogen_datetime_columns, new_col_name)
+    }
+    new_col_name <- paste0(dt, '_autogen_hour')
+    sampled_data_frame[[new_col_name]] <- hour(sampled_data_frame[[dt]])
+    if (length(unique(na.omit(sampled_data_frame[[new_col_name]]))) == 1){
+      sampled_data_frame[[new_col_name]] <- NULL
+    } else{
+      autogen_datetime_columns <- c(autogen_datetime_columns, new_col_name)
+    }
+    new_col_name <- paste0(dt, '_autogen_minute')
+    sampled_data_frame[[new_col_name]] <- minute(sampled_data_frame[[dt]])
+    if (length(unique(na.omit(sampled_data_frame[[new_col_name]]))) == 1){
+      sampled_data_frame[[new_col_name]] <- NULL
+    } else{
+      autogen_datetime_columns <- c(autogen_datetime_columns, new_col_name)
+    }
+    new_col_name <- paste0(dt, '_autogen_second')
+    sampled_data_frame[[new_col_name]] <- second(sampled_data_frame[[dt]])
+    if (length(unique(na.omit(sampled_data_frame[[new_col_name]]))) == 1){
+      sampled_data_frame[[new_col_name]] <- NULL
+    } else{
+      autogen_datetime_columns <- c(autogen_datetime_columns, new_col_name)
+    }
+    config$ColumnsToExclude <- c(config$ColumnsToExclude, dt)
+  }
+}
+
+
+# Add datetime components to conf$CategoricalColumns
+CategoricalColumns <- config$CategoricalColumns
+config$CategoricalColumns <- c(config$CategoricalColumns, autogen_datetime_columns)
+
+# detect data types
+detectDataTypes <- function(data, cat_auto_detect_threshold = 3){
+  isNumerical<- vector(mode='logical', length = length(names(data)))
+  names(isNumerical) <- names(data)
+  isCategorical<-vector(mode='logical', length = length(names(data)))
+  names(isCategorical)<- names(data)
+
+  info = rxGetInfo(data = data, getVarInfo = TRUE)
+
+  names <- names(data)
+  for(name in names) {
+    type<- (info$varInfo[[name]])[[1]]
+    if(type=='integer'){
+      varSummary <- rxSummary(formula = as.formula(paste0('~ F(',name,')')), data = data, reportProgress = 0, rowsPerRead=config$RowsPerRead)
+      uniqueValues <- dim(varSummary$categorical[[1]])[1]
+      if(records/uniqueValues > 500 || uniqueValues <= cat_auto_detect_threshold)
+      {
+        isCategorical[name]<- TRUE
+      } else{
+        isNumerical[[name]] = TRUE
+      }
+    } else if (type=='numeric'){
+      isNumerical[name]<-TRUE
+    } else if(type=='character' || type=='logical'){
+        isCategorical[name]<- TRUE
+    } else if(type=='factor'){
+        isCategorical[name]=TRUE
+        level<-(info$varInfo[[name]])[[4]]
+        if( records/level<2 )
+        {
+          config$ColumnsToExclude<-c(config$ColumnsToExclude, name)
+        }
+    }
+  }
+  result<-cbind(isNumerical, isCategorical)
+  return (result)
+}
+types<- detectDataTypes(data)
+isNumerical <- types[,1]
+isCategorical <- types[,2]
+
+# override auto-detected isCategorical with the specified categorical variables in yaml
+if(!is.null(config$CategoricalColumns)){
+  config$CategoricalColumns <- make.names(config$CategoricalColumns, unique=TRUE)
+  for(v in config$CategoricalColumns){
+    isCategorical[v] <- TRUE
+    isNumerical[v] <- FALSE
+  }
+}
+# override auto-detected isNumerical with the specified numerical variables in yaml
+if(!is.null(config$NumericalColumns)){
+  config$NumericalColumns <- make.names(config$NumericalColumns, unique = TRUE)
+  for(v in config$NumericalColumns){
+    isNumerical[v] <- TRUE
+    isCategorical[v] <- FALSE
+    }
+}
+
+# populate config$CategoricalColumns and config$NumericalColumns with detected and specified variables
+colNames <- names(data)
+config$CategoricalColumns <- colNames[isCategorical[colNames] == TRUE]
+config$NumericalColumns <- colNames[isNumerical[colNames] == TRUE]
+
+sampled_data_frame[config$CategoricalColumns] <- lapply(sampled_data_frame[config$CategoricalColumns], factor)
+
+config$ColumnsToExclude <- c(config$ColumnsToExclude, names(config$DateTimeColumns))
+
+# exclude columns from the report
+if(!is.null(config$ColumnsToExclude)){
+  config$CategoricalColumns <- config$CategoricalColumns[!config$CategoricalColumns %in% config$ColumnsToExclude]
+  config$NumericalColumns <- config$NumericalColumns[!config$NumericalColumns %in% config$ColumnsToExclude]
+}
+
+# replace missing values
+if(!is.null(config$MissingValueReplaceWith)){
+  missingValueReplacement <- config$MissingValueReplaceWith
+} else {
+  missingValueReplacement <- 0
+}
+
+# detect task type
+if(is.null(config$Target)){
+  taskType <- 'data_exploration'
+} else if(isCategorical[config$Target]==FALSE){
+  taskType <- 'regression'
+} else {
+  taskType <- 'classification'
+}
+
+# Remove the DateTimeColumns field from the updated YAML file
+config$DateTimeColumns <- NULL
+
+# write updated yaml
+if((!is.null(config$DataSource)) && config$DataSource != 'local'){
+  # if data source is not local file, do not add datetime components into yaml file.
+  config$CategoricalColumns <- CategoricalColumns
+}
+
+#' # Task Summary
+#+ echo=FALSE
+#' - The metadata (location, numerical columns, target, etc.) is - *yaml_file_location*
+#' - The data location is - *`r config$DataFilePath`*
+#' - The target is - *`r config$Target`*
+#' - The task type is - *`r taskType`*.
+#' - The numerical variables are - *`r config$NumericalColumns`*
+#' - The categorical variables are - *`r config$CategoricalColumns`*
+#+ echo=FALSE
+
+"
+
+code <- gsub('yaml_file_location',paste0('"',gsub('\\\\','/',new_yaml_file),'"'), code)
+write(code, file = config$RLogFilePath, append = FALSE)
