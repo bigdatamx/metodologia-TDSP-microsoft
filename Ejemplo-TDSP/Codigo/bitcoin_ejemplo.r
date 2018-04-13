@@ -2,9 +2,14 @@
 #Adquisicion de datos a partir de un dataset
 archivo <- read.csv("/home/valeria/Escritorio/BitcoinDataset.csv")
 archivo
+nrow(archivo)
+ncol(archivo)
 
 archivo2 <- read.csv("/home/valeria/Escritorio/EthereumDataset.csv")
-archivo2
+
+nrow(archivo2)
+ncol(archivo2)
+
 
 #Conocimeinto de la estructura del archivo csv
 str(archivo)
@@ -81,15 +86,15 @@ plot(p1, main="Prediccion 1")
 
 
 #Modelo para la relacion del precio con el valor total en dólares del suministro de bitcoin en circulación.
-
-model2 <- lm(btc_market_price~btc_market_cap, train)
-summary(model2)
-p2 <- predict(model2,test)
-head(p2)
-error2 <- p2 - test[["btc_market_price"]]
-sqrt(mean(error2^2))
-plot(p2, main= "Prediccion 2")
-#RMSE=51.17771
+  
+  model2 <- lm(btc_market_price~btc_market_cap, train)
+  summary(model2)
+  p2 <- predict(model2,test)
+  head(p2)
+  error2 <- p2 - test[["btc_market_price"]]
+  sqrt(mean(error2^2))
+  plot(p2, main= "Prediccion 2")
+  #RMSE=51.17771
 
 #-------------------
 
